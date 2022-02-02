@@ -1,0 +1,82 @@
+﻿@model PagedList.IPagedList<QLHTFastFood.Models.KHACHHANG>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    DANH SÁCH KHÁCH HÀNG
+}
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1">Bảng khách hàng</i>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Mã khách hàng
+                                </th>
+                                <th>
+                                    Tên khách hàng
+                                </th>
+                                <th>
+                                    Trạng thái
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="/Admin/KhachHang/Detail/@item.KhachHang_ID">Xem chi tiết thông tin</a>
+                                    </td>
+                                    <td>@item.KhachHang_ID</td>
+                                    <td>@item.HoTen</td>
+                                    @if (item.Status == true)
+                                    {
+                                        <td>Hoạt động</td>}
+                                    @if (item.Status == false)
+                                    {
+                                        <td>Đã bị khóa</td>}
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Mã khách hàng
+                                </th>
+                                <th>
+                                    Tên khách hàng
+                                </th>
+                                <th>
+                                    Trạng thái
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/PagedList.css" rel="stylesheet" />

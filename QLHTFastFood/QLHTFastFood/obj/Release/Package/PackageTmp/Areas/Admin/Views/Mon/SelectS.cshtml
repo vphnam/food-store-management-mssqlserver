@@ -1,0 +1,5 @@
+﻿@model QLHTFastFood.Models.SIZE
+
+@Html.DropDownListFor(model => model.Size_ID,
+    new SelectList(Model.ListSize.OrderBy(model => model.Size_ID),"Size_ID","TenSize"),"-Chọn kích thước-", new { htmlAttributes = new { @class = "form-control py-4" } })
+

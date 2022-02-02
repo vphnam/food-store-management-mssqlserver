@@ -1,0 +1,56 @@
+﻿@model QLHTFastFood.Models.MON
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    CHI TIẾT THÔNG TIN MÓN
+}
+<div>
+    <hr />
+    <table border="1" style="width:80%;">
+        <tr>
+            <td><strong>Mã món</strong></td>
+            <td>@Html.DisplayFor(model => model.Mon_ID)</td>
+        </tr>
+        <tr>
+            <td><strong>Tên món</strong></td>
+            <td>@Html.DisplayFor(model => model.TenMon)</td>
+        </tr>
+        <tr>
+            <td><strong>Loại</strong></td>
+            <td>@Html.DisplayFor(model => model.LOAI.TenLoai)</td>
+        </tr>
+        <tr>
+            <td><strong>Đơn vị</strong></td>
+            <td>@Html.DisplayFor(model => model.DONVI.TenDonVi)</td>
+        </tr>
+        <tr>
+            <td><strong>Size món</strong></td>
+            <td>@Html.DisplayFor(model => model.SIZE.TenSize)</td>
+        </tr>
+        <tr>
+            <td><strong>Ảnh minh họa</strong></td>
+            <td><img src="@Url.Content(Model.AnhMon)" width="180" style="text-align:center;height:180px" /></td>
+        </tr>
+        <tr>
+            <td><strong>Đơn giá</strong></td>
+            <td>@Html.DisplayFor(model => model.DonGia)</td>
+        </tr>
+        <tr>
+            <td><strong>Khuyến mãi</strong></td>
+            <td>@Html.DisplayFor(model => model.KHUYENMAI.TenKhuyenMai)</td>
+        </tr>
+        <tr>
+            <td><strong>Mô tả</strong></td>
+            <td>@Html.DisplayFor(model => model.MoTa)</td>
+        </tr>
+
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa thông tin", "Edit", new { id = Model.Mon_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

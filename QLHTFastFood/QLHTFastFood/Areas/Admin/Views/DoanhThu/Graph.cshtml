@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Graph";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section header{
+    ĐỒ THỊ DOANH THU NĂM
+}
+@using (Html.BeginForm("Graph", "DoanhThu"))
+{
+    <div class="form-horizontal">
+        <div class="form-group" style="margin:15px;">
+            <p class="small mb-1">Nhập năm cần xem</p>
+            <input type="number" name="id" min="2021" max="2050" style="width:400px; height:40px;" />
+            <input type="submit" class="btn btn-primary" value="Tìm kiếm" style="width:100px;height:45px;" />
+        </div>
+    </div>
+}
+@Html.ActionLink("Xuất báo cáo năm", "XuatBaoCaoDoanhThuNam", "DoanhThu",
+    new { nam = ViewBag.NamXuat}, new {@class = "btn btn-primary" })
+<html>
+
+<head>
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+    <div class="card-body">
+        <canvas id="BarChartDoanhThu" width="100%" height="400px;"></canvas>
+    </div>
+    <script>
+        var thang = @Html.Raw(Json.Encode(ViewBag.Thang));
+        var doanhthu = @Html.Raw(Json.Encode(ViewBag.DoanhThu));
+        var ctx = $("#BarChartDoanhThu");
+        var barchart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: thang,
+                datasets: [{
+                    label: "Doanh thu",
+                    data: doanhthu,
+                    backgroundColor: "rgba(2,117,216,1)",
+                    borderColor: "rgba(2,117,216,1)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [{
+                        sticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+
+            }
+        });
+    </script>
+</body>
+
+</html>
+

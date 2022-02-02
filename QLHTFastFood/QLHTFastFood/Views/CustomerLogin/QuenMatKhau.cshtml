@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "QuenMatKhau";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+<div class="productszz">
+    <div class="card-header" style="color:black;background-color:white;"><h1 class="text-center font-weight-light my-4" style="text-align:center;">QUÊN MẬT KHẨU</h1></div>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                <label class="small mb-1" for="inputEmailAddress">Nhập email <b style="color:red;">*</b></label>
+                <input type="email" name="Email" placeholder="Nhập email" class="form-control py-4" />
+            </div>
+            <div class="form-group" style="font-size:14px;color:red;">
+                @ViewData["Loi1"]
+                @ViewData["Loi2"]
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                    <input type="submit" class="zzbutton" value="Xác nhận" style="width:100%" />
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+
+

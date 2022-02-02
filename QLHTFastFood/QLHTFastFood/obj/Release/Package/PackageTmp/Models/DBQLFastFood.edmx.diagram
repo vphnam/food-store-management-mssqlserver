@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4abcfb542b864830868ff7a98ad6554e" Name="Diagram1">
+        <EntityTypeShape EntityType="QLFastFoodModel.CONGTHUC" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.CTDOANHTHUNGAY" Width="1.5" PointX="8.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.CTDONHANG" Width="1.5" PointX="8.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.DONHANG" Width="1.5" PointX="6" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.DONVI" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.FEEDBACK" Width="1.5" PointX="5.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.KHACHHANG" Width="1.5" PointX="3.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.KHUYENMAI" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.LOAI" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.MON" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.NGUYENLIEU" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.NHACUNGCAP" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.NHANVIEN" Width="1.5" PointX="3.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.QUYENTRUYCAP" Width="1.5" PointX="1.5" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.SIZE" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.sysdiagram" Width="1.5" PointX="7.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLFastFoodModel.VOUCHER" Width="1.5" PointX="3.75" PointY="20.625" IsExpanded="true" />
+        <AssociationConnector Association="QLFastFoodModel.FK_MON_CT" ManuallyRouted="false" />
+        <AssociationConnector Association="QLFastFoodModel.FK_NL_CT" ManuallyRouted="false" />
+        <AssociationConnector Association="QLFastFoodModel.FK_CTDOANHTHUNGAY_DONHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="QLFastFoodModel.FK_DONHANGONL_CTDONHANGONL" ManuallyRouted="false" />
+        <AssociationConnector Association="QLFastFoodModel.FK_MON_CTDONHANGONL" ManuallyRouted="false" />
+        <AssociationConnector Association="QLFastFoodModel.FK_KHACHHANG_DH" ManuallyRouted="false" />
+        <AssociationConnector Association="QLFastFoodModel.FK_NHANVIEN_DH" ManuallyRouted="false" />
+        <AssociationConnector Association="QLFastFoodModel.FK_VOUCHER_DH" ManuallyRouted="false" />
+        <AssociationConnector Association="QLFastFoodModel.FK_DONVI_MON" ManuallyRouted="false" />
+        <AssociationConnector Association="QLFastFoodModel.FK_DONVI_NGUYENLIEU" ManuallyRouted="false" />
+        <AssociationConnector Association="QLFastFoodModel.FK_KM_MON" ManuallyRouted="false" />
+        <AssociationConnector Association="QLFastFoodModel.FK_LOAI_MON" ManuallyRouted="false" />
+        <AssociationConnector Association="QLFastFoodModel.FK_SIZE_MON" ManuallyRouted="false" />
+        <AssociationConnector Association="QLFastFoodModel.FK_NCC_NGUYENLIEU" ManuallyRouted="false" />
+        <AssociationConnector Association="QLFastFoodModel.FK_QUYEN_NV" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

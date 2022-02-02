@@ -1,0 +1,5 @@
+﻿@model QLHTFastFood.Models.DONVI
+
+@Html.DropDownListFor(model => model.DonVi_ID,
+    new SelectList(Model.ListDV.OrderBy(model => model.DonVi_ID),"DonVi_ID","TenDonVi"),"-Chọn đơn vị-", new { htmlAttributes = new { @class = "form-control py-4" } })
+

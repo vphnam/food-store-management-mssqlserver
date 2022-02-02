@@ -1,0 +1,116 @@
+﻿@using QLHTFastFood.Models
+@model List<DisplayMon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+<div class="products">
+    <h2 class="textheader" style="text-align:center;">TẤT CẢ CÁC MÓN</h2>
+    <div style="margin:0 auto;display:inline-block">
+        @using (Html.BeginForm("Index", "Home"))
+        {
+            <div style="display:inline-block">
+                <p><span style="font-weight:bolder">Từ</span> <input type="number" min="1" max="1000000" name="priceFrom" /> VNĐ &nbsp; &nbsp; &nbsp;  <span style="font-weight:bolder">Đến</span> <input type="number" min="1" max="1000000" name="priceTo" /> VNĐ 	&nbsp;	&nbsp;	&nbsp;<input type="submit" value="Tìm kiếm" class="zzbutton" /></p>
+            </div>
+
+
+            if (Model.Count == 0)
+            {
+                <h3 style="width:100%;text-align:center;">Danh sách trống, không có món nằm trong giới hạn tìm kiếm</h3>
+            }
+        }
+
+    </div>
+    <br />
+    <div>
+        <br />
+        @if (Model.Count > 1)
+        {
+            foreach (var item in Model)
+            {
+                <div class="search">
+                    <div class="products__item">
+                        <a href="/Home/Detail/@item.Mon_ID"><img style="height:200px;" src="@Url.Content(item.AnhMon)" alt="Product" /></a>
+                        <h4 style="text-align:center; height:60px;">@item.TenMon</h4>
+                        <div style="height:50px;">
+                            @if (item.KhuyenMai_ID == null)
+                            {
+                                <h2 style="text-align:center;"><span>@item.DonGia VNĐ</span></h2>
+                                <br />
+                            }
+                            @if (item.KhuyenMai_ID != null)
+                            {
+                                <h2 style="text-align:center;"><span><strike>@item.DonGia VNĐ</strike></span></h2>
+                                <h2 style="text-align:center; color:red;"><span><strong>@item.GiaKM VNĐ</strong></span></h2>}
+                        </div>
+
+                        <br />
+                        <br />
+                        <div class="products__button1" style="padding-bottom:0px;">
+                            <a href="/Home/Detail/@item.Mon_ID">Xem chi tiết</a>
+                        </div>
+                        <div class="products__button2" style="padding-bottom:0px;">
+                            <a href="@Url.Action("ThemGioHang", "Giohang", new { @maMon = item.Mon_ID, @soLuong = 1, @strURL = Request.Url.ToString() })">ĐẶT MÓN</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <div class="products__item" style="width:100%;">
+                    <a href="/Home/Detail/@item.Mon_ID"><img style="height:200px;" src="@Url.Content(item.AnhMon)" alt="Product" /></a>
+                    <h4 style="text-align:center; height:60px;">@item.TenMon</h4>
+                    <div style="height:50px;">
+                        @if (item.KhuyenMai_ID == null)
+                        {
+                            <h2 style="text-align:center;"><span>@item.DonGia VNĐ</span></h2>
+                            <br />
+                        }
+                        @if (item.KhuyenMai_ID != null)
+                        {
+                            <h2 style="text-align:center;"><span><strike>@item.DonGia VNĐ</strike></span></h2>
+                            <h2 style="text-align:center; color:red;"><span><strong>@item.GiaKM VNĐ</strong></span></h2>}
+                    </div>
+
+                    <br />
+                    <br />
+                    <div class="products__button1" style="padding-bottom:0px;">
+                        <a href="/Home/Detail/@item.Mon_ID">Xem chi tiết</a>
+                    </div>
+                    <input type="button" id="btnBuy" value="@Url.Action("ThemGioHang", "Giohang", new { @maMon = item.Mon_ID, @soLuong = 1, @strURL = Request.Url.ToString() })" class="products__button2" style="padding-bottom:0px;" />
+
+
+                </div>
+
+            }
+
+        }
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function Containts(text_one, text_two) {
+            if (text_one.indexOf(text_two) != -1)
+                return true;
+        }
+        $("#search").keyup(function () {
+            var searchText = $("#search").val().toLowerCase();
+            $(".search").each(function () {
+                if (!Containts($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            });
+        });
+    });
+</script>
+

@@ -1,0 +1,38 @@
+﻿@model QLHTFastFood.Models.CONGTHUC
+
+@{
+    ViewBag.Title = "DeleteCT";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    XÓA THÔNG TIN MÓN
+}
+<div>
+    <hr />
+    <table border="1" style="width:80%;">
+        <tr>
+            <td><strong>Tên món</strong></td>
+            <td>@Html.DisplayFor(model => model.MON.TenMon)</td>
+        </tr>
+        <tr>
+            <td><strong>Tên nguyên liệu</strong></td>
+            <td>@Html.DisplayFor(model => model.NGUYENLIEU.TenNguyenLieu)</td>
+        </tr>
+        <tr>
+            <td><strong>Số lượng cần</strong></td>
+            <td>@Html.DisplayFor(model => model.SoLuongNLCan)</td>
+        </tr>
+
+    </table>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Chấp nhận xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

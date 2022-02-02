@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "CancelDatHang";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<div class="productszz" style="text-align:center;">
+    <br />
+    <br />
+    <br />
+    <h3>Đơn hàng của bạn đã bị hủy do lỗi thanh toán. Vui lòng liên hệ trực tiếp đến hotline nếu có vấn đề phát sinh hoặc chuyển sang hình thức thanh toán trực tiếp</h3>
+    <br />
+    <h3>@ViewBag.Mess</h3>
+    <br />
+    <br />
+    <br />
+    <button class="zzbutton" style="width:200px;height:40px;font-size:15px">@Html.ActionLink("Trở về trang chủ", "Index", "Home")</button>
+</div>
+
+

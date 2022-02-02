@@ -1,0 +1,84 @@
+﻿@model PagedList.IPagedList<QLHTFastFood.Models.LOAI>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    DANH SÁCH LOẠI MÓN
+}
+@using (Html.BeginForm("Index", "Loai"))
+{
+    <div class="form-horizontal">
+        <div class="form-group" style="margin:15px;">
+            <p class="small mb-1">Nhập mã loại cần tìm</p>
+            <input type="search" name="id" style="width:400px; height:40px;" />
+            <input type="submit" class="btn btn-primary" value="Tìm kiếm" style="width:100px;height:45px;" />
+        </div>
+    </div>
+}
+
+
+@Html.ActionLink("Thêm mới", "Create", "Loai", new { @class = "btn btn-primary" })
+<br />
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1">Bảng loại món</i>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Mã loại
+                                </th>
+                                <th>
+                                    Tên loại
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="/Admin/Loai/Edit/@item.Loai_ID">Sửa thông tin</a>
+                                        <br />
+                                        <br />
+                                        <a href="/Admin/Loai/Delete/@item.Loai_ID">Xóa thông tin</a>
+                                    </td>
+                                    <td>@item.Loai_ID</td>
+                                    <td>@item.TenLoai</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Mã loại
+                                </th>
+                                <th>
+                                    Tên loại
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/PagedList.css" rel="stylesheet" />

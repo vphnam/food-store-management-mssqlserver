@@ -1,0 +1,109 @@
+﻿@model PagedList.IPagedList<QLHTFastFood.Models.FEEDBACK>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    DANH SÁCH PHẢN HỒI TỪ KHÁCH HÀNG
+}
+@using (Html.BeginForm("Index", "Feedback"))
+{
+    <div class="form-horizontal">
+        <div class="form-group" style="margin:15px;">
+            <p class="small mb-1">Nhập mã feedback cần tìm</p>
+            <input type="search" name="id" style="width:400px; height:40px;" />
+            <input type="submit" class="btn btn-primary" value="Tìm kiếm" style="width:100px;height:45px;" />
+        </div>
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1">Bảng phản hồi</i>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Mã feedback
+                                </th>
+                                <th>
+                                    Họ tên khách hàng
+                                </th>
+                                <th>
+                                    Email
+                                </th>
+                                <th>
+                                    Số điện thoại
+                                </th>
+                                <th>
+                                    Ngày tạo
+                                </th>
+                                <th>
+                                    Nội dung
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="/Admin/Feedback/Edit/@item.Feedback_ID">Xem chi tiết</a>
+                                        <br />
+                                    </td>
+                                    <td>@item.Feedback_ID</td>
+                                    <td>@item.HoTen</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.SDT</td>
+                                    <td>@Convert.ToDateTime(item.NgayTao).ToString("dd/MM/yyyy")</td>
+                                    <td>@item.NoiDung</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Mã feedback
+                                </th>
+                                <th>
+                                    Họ tên khách hàng
+                                </th>
+                                <th>
+                                    Email
+                                </th>
+                                <th>
+                                    Số điện thoại
+                                </th>
+                                <th>
+                                    Ngày tạo
+                                </th>
+                                <th>
+                                    Nội dung
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/PagedList.css" rel="stylesheet" />

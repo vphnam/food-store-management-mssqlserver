@@ -1,0 +1,5 @@
+﻿@model QLHTFastFood.Models.NGUYENLIEU
+
+@Html.DropDownListFor(model => model.NguyenLieu_ID,
+    new SelectList(Model.ListNL.OrderBy(model => model.NguyenLieu_ID),"NguyenLieu_ID","TenNguyenLieu"),"---Chọn nguyên liệu---", new { htmlAttributes = new { @class = "form-control py-4" } })
+

@@ -1,0 +1,54 @@
+﻿@model QLHTFastFood.Models.FEEDBACK
+
+@{
+    ViewBag.Title = "GuiFeedback";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+
+<div class="productszz">
+    <div class="card-header" style="color:black;background-color:white;"><h1 class="text-center font-weight-light my-4" style="text-align:center;">GỬI PHẢN HỒI</h1></div>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <b style="color:red;"> @Html.ValidationSummary(true, "", new { @class = "text-danger" })</b>
+            <fieldset>
+                <div class="form-group">
+                    <label class="small mb-1" for="inputEmailAddress">Họ tên <b style="color:red;">*</b></label>
+                    @Html.TextBoxFor(model => model.HoTen, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập họ tên" })
+                </div>
+                <div class="form-group" style="color:red;">
+                    @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label class="small mb-1" for="inputEmailAddress">Email <b style="color:red;">*</b></label>
+                    <input type="email" name="Email" class="form-control py-4" autofocus="autofocus" placeholder="Nhập email" />
+                </div>
+                <div class="form-group" style="color:red;">
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label class="small mb-1" for="inputEmailAddress">Số điện thoại <b style="color:red;">*</b></label>
+                    @Html.TextBoxFor(model => model.SDT, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập số điện thoại" })
+                </div>
+                <div class="form-group" style="color:red;">
+                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label class="small mb-1" for="inputEmailAddress">Nội dung <b style="color:red;">*</b></label>
+                    @Html.TextBoxFor(model => model.NoiDung, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập nội dung" })
+                </div>
+                <div class="form-group" style="color:red;">
+                    @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <button type="submit" class="zzbutton" style="width:100%">Đăng ký</button>
+                    </div>
+                </div>
+            </fieldset>
+        }
+    </div>
+</div>

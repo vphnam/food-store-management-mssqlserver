@@ -1,0 +1,60 @@
+﻿@model QLHTFastFood.Models.DangKyKH
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<div class="productszz">
+    <div class="card-header" style="color:black;background-color:white;"><h1 class="text-center font-weight-light my-4" style="text-align:center;">ĐĂNG KÝ</h1></div>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="small mb-1" for="inputEmailAddress">Nhập họ tên <b style="color:red;">*</b></label>
+                @Html.TextBoxFor(model => model.HoTen, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập họ tên" })
+                <p style="color:red;">@Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })</p>
+            </div>
+            <div class="form-group">
+                <label class="small mb-1" for="inputEmailAddress">Tài khoản <b style="color:red;">*</b></label>
+                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập tên tài khoản" })
+                <p style="color:red;">@Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })</p>
+            </div>
+            <div class="form-group">
+                <label class="small mb-1" for="inputPassword">Mật khẩu <b style="color:red;">*</b></label>
+                @Html.PasswordFor(model => model.PassWord, new { @class = "form-control py-4", @placeholder = "Nhập mật khẩu" })
+                <p style="color:red;">@Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })</p>
+            </div>
+            <div class="form-group">
+                <label class="small mb-1" for="inputPassword">Xác nhận mật khẩu <b style="color:red;">*</b></label>
+                @Html.PasswordFor(model => model.ConfirmPassWord, new { @class = "form-control py-4", @placeholder = "Xác nhận lại mật khẩu" })
+                <p style="color:red;">@Html.ValidationMessageFor(model => model.ConfirmPassWord, "", new { @class = "text-danger" })</p>
+            </div>
+            <div class="form-group">
+                <label class="small mb-1" for="inputEmailAddress">Nhập số điện thoại <b style="color:red;">*</b></label>
+                @Html.TextBoxFor(model => model.SDTKH, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập số điện thoại" })
+                <p style="color:red;">@Html.ValidationMessageFor(model => model.SDTKH, "", new { @class = "text-danger" })</p>
+            </div>
+            <div class="form-group">
+                <label class="small mb-1" for="inputEmailAddress">Email <b style="color:red;">*</b></label>
+                <input type="email" name="Email" class="form-control py-4" autofocus="autofocus" placeholder = "Nhập email" />
+                <p style="color:red;">@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })</p>
+            </div>
+            <div class="form-group">
+                <label class="small mb-1" for="inputEmailAddress">Địa chỉ <b style="color:red;">*</b></label>
+                @Html.TextBoxFor(model => model.DiaChi, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập địa chỉ" })
+                <p style="color:red;">@Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })</p>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                    <input type="submit" name="submit" class="zzbutton" style="width:100%" value="ĐĂNG KÝ" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

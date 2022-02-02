@@ -1,0 +1,45 @@
+﻿@model QLHTFastFood.Models.DetailKH
+
+@{
+    ViewBag.Title = "EditInfo";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<div class="productszz">
+    <div class="card-header" style="color:black;background-color:white;"><h1 class="text-center font-weight-light my-4" style="text-align:center;">ĐĂNG KÝ</h1></div>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <b style="color:red;"> @Html.ValidationSummary(true, "", new { @class = "text-danger" })</b>
+            <fieldset>
+                <div class="form-group">
+                    <label class="small mb-1" for="inputEmailAddress">Mã khách hàng <b style="color:red;">*</b></label>
+                    @Html.TextBoxFor(model => model.KhachHang_ID, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập họ tên", @readonly = "readonly" })
+                </div>
+                <div class="form-group">
+                    <label class="small mb-1" for="inputEmailAddress">Họ tên <b style="color:red;">*</b></label>
+                    @Html.TextBoxFor(model => model.HoTen, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập họ tên" })
+                </div>
+                <div class="form-group">
+                    <label class="small mb-1" for="inputEmailAddress">Email <b style="color:red;">*</b></label>
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập email" })
+                </div>
+                <div class="form-group">
+                    <label class="small mb-1" for="inputEmailAddress">Địa chỉ <b style="color:red;">*</b></label>
+                    @Html.TextBoxFor(model => model.DiaChi, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập địa chỉ" })
+                </div>
+                <div class="form-group">
+                    <label class="small mb-1" for="inputEmailAddress">Số điện thoại <b style="color:red;">*</b></label>
+                    @Html.TextBoxFor(model => model.SDTKH, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập số điện thoại" })
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <button type="submit" class="zzbutton" style="width:100%">Đăng ký</button>
+                    </div>
+                </div>
+            </fieldset>
+        }
+    </div>
+</div>

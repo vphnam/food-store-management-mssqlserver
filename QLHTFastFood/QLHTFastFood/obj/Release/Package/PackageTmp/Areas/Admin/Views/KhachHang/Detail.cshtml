@@ -1,0 +1,60 @@
+﻿@model QLHTFastFood.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    CHI TIẾT THÔNG TIN KHÁCH HÀNG
+}
+<div>
+    <hr />
+    <table border="1" style="width:80%;">
+        <tr>
+            <td><strong>Mã nhân viên</strong></td>
+            <td>@Html.DisplayFor(model => model.KhachHang_ID)</td>
+        </tr>
+        <tr>
+            <td><strong>Tên nhân viên</strong></td>
+            <td>@Html.DisplayFor(model => model.HoTen)</td>
+        </tr>
+        <tr>
+            <td><strong>Tên tài khoản</strong></td>
+            <td>@Html.DisplayFor(model => model.UserName)</td>
+        </tr>
+        <tr>
+            <td><strong>Mật khẩu</strong></td>
+            <td>@Html.DisplayFor(model => model.PassWord)</td>
+        </tr>
+        <tr>
+            <td><strong>Địa chỉ</strong></td>
+            <td>@Html.DisplayFor(model => model.DiaChi)</td>
+        </tr>
+        <tr>
+            <td><strong>Số điện thoại</strong></td>
+            <td>@Html.DisplayFor(model => model.SDTKH)</td>
+        </tr>
+        <tr>
+            <td><strong>Email</strong></td>
+            <td>@Html.DisplayFor(model => model.Email)</td>
+        </tr>
+        <tr>
+            <td><strong>Trạng thái tài khoản</strong></td>
+            @if (Model.Status == true)
+            {
+                <td>Hoạt động</td>}
+            @if (Model.Status == false)
+            {
+                <td>Đã bị khóa</td>}
+        </tr>
+
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Khóa tài khoản", "LockAccount", new { id = Model.KhachHang_ID })
+    <br />
+    @Html.ActionLink("Mở khóa tài khoản", "OpenAccount", new { id = Model.KhachHang_ID })
+    <br />
+    @Html.ActionLink("Back to List", "Index")
+</p>

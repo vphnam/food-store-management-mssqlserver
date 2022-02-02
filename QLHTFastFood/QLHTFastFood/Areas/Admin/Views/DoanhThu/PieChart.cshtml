@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "PieChart";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section header{
+    PieChart loại hóa đơn
+}
+<html>
+<head>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    
+</head>
+<body>
+    @using (Html.BeginForm("PieChart", "DoanhThu"))
+    {
+        <div class="form-horizontal">
+            <div class="form-group" style="margin:15px;">
+                <p class="small mb-1">Nhập năm cần xem</p>
+                <input type="number" name="id" min="2021" max="2050" style="width:400px; height:40px;" />
+                <input type="submit" class="btn btn-primary" value="Tìm kiếm" style="width:100px;height:45px;" />
+            </div>
+        </div>
+    }
+    <figure class="highcharts-figure">
+        <div id="container" style="height:600px;"></div>
+        <p class="highcharts-description">
+        </p>
+    </figure>
+    <script>
+        var rat = @Html.Raw(Json.Encode(ViewBag.Loai));
+        Highcharts.chart('container', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Đồ thị loại hóa đơn trong năm ' + @ViewBag.Nam + '.'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                name: 'Chiếm ',
+                colorByPoint: true,
+                data: [{
+                    name: 'Hóa đơn Online',
+                    y: rat.Online,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Hóa đơn Offline',
+                        y: rat.Offline,
+                        sliced: true,
+                        selected: true
+
+                }]
+            }]
+        });
+
+
+    </script>
+</body>
+</html>

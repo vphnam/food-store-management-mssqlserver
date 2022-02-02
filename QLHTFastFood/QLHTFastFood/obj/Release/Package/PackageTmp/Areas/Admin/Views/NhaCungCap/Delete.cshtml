@@ -1,0 +1,38 @@
+﻿@model QLHTFastFood.Models.NHACUNGCAP
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    XÓA NHÀ CUNG CẤP
+}
+<div>
+    <hr />
+    <table border="1" style="width:80%;">
+        <tr>
+            <td>Mã nhà cung cấp</td>
+            <td>@Html.DisplayFor(model => model.NCC_ID)</td>
+        </tr>
+        <tr>
+            <td>Tên nhà cung cấp</td>
+            <td>@Html.DisplayFor(model => model.TenNCC)</td>
+        </tr>
+        <tr>
+            <td>Địa chỉ</td>
+            <td>@Html.DisplayFor(model => model.DiaChi)</td>
+        </tr>
+
+    </table>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Chấp nhận xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

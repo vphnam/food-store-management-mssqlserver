@@ -1,0 +1,11 @@
+﻿@model IEnumerable<QLHTFastFood.Models.LOAI>
+
+<div class="header__navigation">
+    <ul>
+        <li><a href="/Home/Index">Tất cả món</a></li>
+        @foreach (var item in Model)
+        {
+            <li><a href="/Home/MonTheoLoai/@item.Loai_ID">@item.TenLoai</a></li>
+        }
+    </ul>
+</div>

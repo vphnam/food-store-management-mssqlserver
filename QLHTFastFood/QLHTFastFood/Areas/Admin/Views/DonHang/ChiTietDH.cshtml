@@ -1,0 +1,79 @@
+﻿@model PagedList.IPagedList<QLHTFastFood.Models.CTDONHANG>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "ChiTietDH";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    CHI TIẾT ĐƠN HÀNG
+}
+@Html.ActionLink("Xuất excel", "XuatExcel", new {id = ViewBag.MaDH })
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1">Bảng chi tiết đơn hàng</i>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Mã đơn hàng
+                                </th>
+                                <th>
+                                    Mã món
+                                </th>
+                                <th>
+                                    Đơn giá mua
+                                </th>
+                                <th>
+                                    Số lượng mua
+                                </th>
+                                <th>
+                                    Thành tiền
+                                </th>       
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>   
+                                    <td>@item.DonHang_ID</td>
+                                    <td>@item.Mon_ID</td>
+                                    <td>@item.DonGiaMua</td>
+                                    <td>@item.SoLuongMua</td>
+                                    <td>@item.ThanhTien</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    Mã đơn hàng
+                                </th>
+                                <th>
+                                    Mã món
+                                </th>
+                                <th>
+                                    Đơn giá mua
+                                </th>
+                                <th>
+                                    Số lượng mua
+                                </th>
+                                <th>
+                                    Thành tiền
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/PagedList.css" rel="stylesheet" />

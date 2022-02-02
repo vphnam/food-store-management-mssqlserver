@@ -1,0 +1,145 @@
+﻿@model PagedList.IPagedList<QLHTFastFood.Models.DONHANG>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    DANH SÁCH ĐƠN HÀNG
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1">Bảng đơn hàng</i>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Mã đơn hàng
+                                </th>
+                                <th>
+                                    Mã khách hàng
+                                </th>
+                                <th>
+                                    Mã nhân viên
+                                </th>
+                                <th>
+                                    Loại
+                                </th>
+                                <th>
+                                    Tình trạng xác nhận
+                                </th>
+                                <th>
+                                    Tình trạng thanh toán
+                                </th>
+                                <th>
+                                    Thời gian đặt
+                                </th>
+                                <th>
+                                    Thời gian giao
+                                </th>
+                                <th>
+                                    Mã voucher
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="/Admin/DoanhThu/XemChiTiet/@item.DonHang_ID">Xem chi tiết</a>
+                                        <br />
+                                        @if (item.DaXacNhan == false)
+                                        {
+
+                                            @Html.ActionLink("Xác Nhận", "XacNhan", new { maDH = item.DonHang_ID })
+                                            <br />
+                                        }
+                                        @if (item.DaThanhToan == false)
+                                        {
+                                            @Html.ActionLink("Thanh Toán", "ThanhToan", new { maDH = item.DonHang_ID })
+                                            <br />
+                                        }
+                                        <br />
+                                    </td>
+                                    <td>@item.DonHang_ID</td>
+                                    <td>@item.KhachHang_ID</td>
+                                    <td>@item.NhanVien_ID</td>
+                                    @if (item.Loai == false)
+                                    {
+                                        <td>Online</td>}
+                                    @if (item.Loai == true)
+                                    {
+                                        <td>Offline</td>}
+                                    @if (item.DaXacNhan == false)
+                                    {
+                                        <td>Chưa xác nhận</td>}
+                                    @if (item.DaXacNhan == true)
+                                    {
+                                        <td>Đã xác nhận</td>}
+                                    @if (item.DaThanhToan == false)
+                                    {
+                                        <td>Chưa thanh toán</td>}
+                                    @if (item.DaThanhToan == true)
+                                    {
+                                        <td>Đã thanh toán</td>}
+                                    <td>@item.ThoiGianDat</td>
+                                    <td>@item.ThoiGianGiao</td>
+                                    <td>@item.Voucher_ID</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Mã đơn hàng
+                                </th>
+                                <th>
+                                    Mã khách hàng
+                                </th>
+                                <th>
+                                    Mã nhân viên
+                                </th>
+                                <th>
+                                    Loại
+                                </th>
+                                <th>
+                                    Tình trạng xác nhận
+                                </th>
+                                <th>
+                                    Tình trạng thanh toán
+                                </th>
+                                <th>
+                                    Thời gian đặt
+                                </th>
+                                <th>
+                                    Thời gian giao
+                                </th>
+                                <th>
+                                    Mã voucher
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/PagedList.css" rel="stylesheet" />

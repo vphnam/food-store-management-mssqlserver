@@ -1,0 +1,8 @@
+﻿@model IEnumerable<QLHTFastFood.Models.LOAI>
+<ul class="sb-sidenav-menu-nested nav accordion">
+    @foreach (var loai in Model)
+    {
+     <li class="nav - link" style="color:gray;"><a href="/Admin/Mon/MonTheoLoai/@loai.Loai_ID">@loai.TenLoai</a></li>
+    }
+    
+</ul>

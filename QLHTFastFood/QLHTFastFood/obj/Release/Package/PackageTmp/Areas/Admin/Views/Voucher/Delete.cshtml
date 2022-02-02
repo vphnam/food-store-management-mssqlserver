@@ -1,0 +1,57 @@
+﻿@model QLHTFastFood.Models.VOUCHER
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    XÓA THÔNG TIN VOUCHER
+}
+<div>
+    <hr />
+    <table border="1" style="width:60%;">
+        <tr>
+            <td>Mã voucher</td>
+            <td>@Html.DisplayFor(model => model.Voucher_ID)</td>
+        </tr>
+        <tr>
+            <td>Tên voucher</td>
+            <td>@Html.DisplayFor(model => model.TenVoucher)</td>
+        </tr>
+        <tr>
+            <td>Phần trăm khuyến mãi</td>
+            @if (Model.PhanTramKhuyenMai > 0)
+            {
+                var x = Model.PhanTramKhuyenMai * 100;
+                <td>@x%</td>}
+        </tr>
+        <tr>
+            <td>Số tiền giảm giá tối đa</td>
+            <td>@Html.DisplayFor(model => model.GiamGiaToiDa) VNĐ</td>
+        </tr>
+        <tr>
+            <td>Ngày bắt đầu</td>
+            <td>@Convert.ToDateTime(Model.NgayBatDau).ToString("dd/MM/yyyy")</td>
+        </tr>
+        <tr>
+            <td>Ngày kết thúc</td>
+            <td>@Convert.ToDateTime(Model.NgayBatDau).ToString("dd/MM/yyyy")</td>
+        </tr>
+        <tr>
+            <td>Mô tả</td>
+            <td>@Html.DisplayFor(model => model.MoTa)</td>
+        </tr>
+
+    </table>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Chấp nhận xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

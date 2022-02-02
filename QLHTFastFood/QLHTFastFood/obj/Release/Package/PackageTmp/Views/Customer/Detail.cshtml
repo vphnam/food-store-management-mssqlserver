@@ -1,0 +1,37 @@
+﻿@model QLHTFastFood.Models.DetailKH
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<div class="productszz">
+    <div class="card-header" style="color:black;background-color:white;"><h1 class="text-center font-weight-light my-4" style="text-align:center;">Thông tin tài khoản</h1></div>
+    <div class="card-body" style="text-align:left">
+        <div class="dl-horizontal">
+            <div>
+                <p><b><span style="color:black;font-size:18px;">@Html.DisplayNameFor(model => model.KhachHang_ID)</span></b> : @Html.DisplayFor(model => model.KhachHang_ID)</p>
+            </div>
+            <div>
+                <p><b><span style="color:black;font-size:18px;">@Html.DisplayNameFor(model => model.HoTen)</span></b> : @Html.DisplayFor(model => model.HoTen)</p>
+            </div>
+            <div>
+                <p><b><span style="color:black;font-size:18px;">@Html.DisplayNameFor(model => model.SDTKH)</span></b> :   @Html.DisplayFor(model => model.SDTKH)</p>
+            </div>
+            <div>
+                <p><b><span style="color:black;font-size:18px;">@Html.DisplayNameFor(model => model.Email)</span></b> :   @Html.DisplayFor(model => model.Email)</p>
+            </div>
+            <div>
+                <p><b><span style="color:black;font-size:18px;">@Html.DisplayNameFor(model => model.DiaChi)</span></b> :   @Html.DisplayFor(model => model.DiaChi)</p>
+            </div>
+        </div>
+        <div style="color:white;height:200px;margin-right:50px;margin-left:50px">
+            <br />
+            <p><button class="zzbutton" style="margin-left:80px;height:40px;width:auto;font-size:16px;">@Html.ActionLink("Chỉnh sửa thông tin", "EditInfo", new { id = Model.KhachHang_ID })</button>
+            <button class="zzbutton" style="margin-left:250px;height:40px;width:auto;font-size:16px;">@Html.ActionLink("Mua hàng ngay!", "Index", "Home")</button>    </p>
+        </div>
+        
+    </div>
+
+</div>
+    

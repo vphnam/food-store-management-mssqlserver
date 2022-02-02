@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    ADMIN PAGE
+}
+<h2>Xin chào: @Session["TenNV"].ToString()</h2>
+<h2>Đang truy cập bằng quyền: @Session["Quyen"]</h2>

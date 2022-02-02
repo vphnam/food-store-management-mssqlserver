@@ -1,0 +1,38 @@
+﻿@model QLHTFastFood.Models.DoiMK
+
+@{
+    ViewBag.Title = "DoiMK";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<div class="productszz">
+    <div class="card-header" style="color:black;background-color:white;"><h1 class="text-center font-weight-light my-4" style="text-align:center;">ĐỔI MẬT KHẨU</h1></div>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <b style="color:red;"> @Html.ValidationSummary(true, "", new { @class = "text-danger" })</b>
+            <fieldset>
+                <div class="form-group">
+                    <label class="small mb-1" for="inputEmailAddress">Mật khẩu cũ <b style="color:red;">*</b></label>
+                    @Html.PasswordFor(model => model.PassWordCu, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập mật khẩu cũ" })
+                </div>
+                <div class="form-group">
+                    <label class="small mb-1" for="inputEmailAddress">Mật khẩu mới <b style="color:red;">*</b></label>
+                    @Html.PasswordFor(model => model.PassWord, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập mật khẩu mới" })
+                </div>
+                <div class="form-group">
+                    <label class="small mb-1" for="inputEmailAddress">Xác nhận mật khẩu mới <b style="color:red;">*</b></label>
+                    @Html.PasswordFor(model => model.ConfirmPassWord, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập xác nhận mật khẩu mới" })
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <button type="submit" class="zzbutton" style="width:100%">XÁC NHẬN ĐỔI MẬT KHẨU</button>
+                    </div>
+                </div>
+            </fieldset>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,58 @@
+﻿@model QLHTFastFood.Models.DangKyKH
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<div class="productszz">
+    <div class="card-header" style="color:black;background-color:white;"><h1 class="text-center font-weight-light my-4" style="text-align:center;">ĐĂNG KÝ</h1></div>
+    <div class="card-body">
+        <form>
+            @using (Html.BeginForm("DangKy", "CustomerLogin", FormMethod.Post))
+            {
+            <b style="color:red;"> @Html.ValidationSummary(false, "", "error")</b>
+                <fieldset>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputEmailAddress">Nhập họ tên <b style="color:red;">*</b></label>
+                        @Html.TextBoxFor(model => model.HoTen, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập họ tên" })
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputEmailAddress">Tài khoản <b style="color:red;">*</b></label>
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập tên tài khoản" })
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputPassword">Mật khẩu <b style="color:red;">*</b></label>
+                        @Html.PasswordFor(model => model.PassWord, new { @class = "form-control py-4", @placeholder = "Nhập mật khẩu" })
+
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputPassword">Xác nhận mật khẩu <b style="color:red;">*</b></label>
+                        @Html.PasswordFor(model => model.ConfirmPassWord, new { @class = "form-control py-4", @placeholder = "Xác nhận lại mật khẩu" })
+
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputEmailAddress">Nhập số điện thoại <b style="color:red;">*</b></label>
+                        @Html.TextBoxFor(model => model.SDTKH, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập số điện thoại" })
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputEmailAddress">Email <b style="color:red;">*</b></label>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập email" })
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputEmailAddress">Địa chỉ <b style="color:red;">*</b></label>
+                        @Html.TextBoxFor(model => model.DiaChi, new { @class = "form-control py-4", @autofocus = "autofocus", @placeholder = "Nhập địa chỉ" })
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                            <button type="submit" class="zzbutton" style="width:100%">Đăng ký</button>
+                        </div>
+                    </div>
+                </fieldset>
+            }
+        </form>
+    </div>
+</div>
+
+

@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLFastFoodModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CONGTHUC">
+    <Key>
+      <PropertyRef Name="Mon_ID" />
+      <PropertyRef Name="NguyenLieu_ID" />
+    </Key>
+    <Property Name="Mon_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NguyenLieu_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SoLuongNLCan" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="MON" Relationship="Self.FK_MON_CT" FromRole="CONGTHUC" ToRole="MON" />
+    <NavigationProperty Name="NGUYENLIEU" Relationship="Self.FK_NL_CT" FromRole="CONGTHUC" ToRole="NGUYENLIEU" />
+  </EntityType>
+  <EntityType Name="CTDOANHTHUNGAY">
+    <Key>
+      <PropertyRef Name="NgayGio" />
+      <PropertyRef Name="DonHang_ID" />
+    </Key>
+    <Property Name="NgayGio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DonHang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Loai" Type="Boolean" />
+    <Property Name="TongTienHoaDon" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="DONHANG" Relationship="Self.FK_CTDOANHTHUNGAY_DONHANG" FromRole="CTDOANHTHUNGAY" ToRole="DONHANG" />
+  </EntityType>
+  <EntityType Name="CTDONHANG">
+    <Key>
+      <PropertyRef Name="DonHang_ID" />
+      <PropertyRef Name="Mon_ID" />
+    </Key>
+    <Property Name="DonHang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mon_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DonGiaMua" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SoLuongMua" Type="Int32" />
+    <Property Name="ThanhTien" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="DONHANG" Relationship="Self.FK_DONHANGONL_CTDONHANGONL" FromRole="CTDONHANG" ToRole="DONHANG" />
+    <NavigationProperty Name="MON" Relationship="Self.FK_MON_CTDONHANGONL" FromRole="CTDONHANG" ToRole="MON" />
+  </EntityType>
+  <EntityType Name="DONHANG">
+    <Key>
+      <PropertyRef Name="DonHang_ID" />
+    </Key>
+    <Property Name="DonHang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="KhachHang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NhanVien_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Loai" Type="Boolean" />
+    <Property Name="DaXacNhan" Type="Boolean" />
+    <Property Name="DaThanhToan" Type="Boolean" />
+    <Property Name="ThoiGianDat" Type="DateTime" Precision="3" />
+    <Property Name="ThoiGianGiao" Type="DateTime" Precision="3" />
+    <Property Name="Voucher_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CTDOANHTHUNGAYs" Relationship="Self.FK_CTDOANHTHUNGAY_DONHANG" FromRole="DONHANG" ToRole="CTDOANHTHUNGAY" />
+    <NavigationProperty Name="CTDONHANGs" Relationship="Self.FK_DONHANGONL_CTDONHANGONL" FromRole="DONHANG" ToRole="CTDONHANG" />
+    <NavigationProperty Name="KHACHHANG" Relationship="Self.FK_KHACHHANG_DH" FromRole="DONHANG" ToRole="KHACHHANG" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_NHANVIEN_DH" FromRole="DONHANG" ToRole="NHANVIEN" />
+    <NavigationProperty Name="VOUCHER" Relationship="Self.FK_VOUCHER_DH" FromRole="DONHANG" ToRole="VOUCHER" />
+  </EntityType>
+  <EntityType Name="DONVI">
+    <Key>
+      <PropertyRef Name="DonVi_ID" />
+    </Key>
+    <Property Name="DonVi_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenDonVi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MONs" Relationship="Self.FK_DONVI_MON" FromRole="DONVI" ToRole="MON" />
+    <NavigationProperty Name="NGUYENLIEUx" Relationship="Self.FK_DONVI_NGUYENLIEU" FromRole="DONVI" ToRole="NGUYENLIEU" />
+  </EntityType>
+  <EntityType Name="FEEDBACK">
+    <Key>
+      <PropertyRef Name="Feedback_ID" />
+    </Key>
+    <Property Name="Feedback_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SDT" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="KhachHang_ID" />
+    </Key>
+    <Property Name="KhachHang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SDTKH" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PassWord" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="DONHANGs" Relationship="Self.FK_KHACHHANG_DH" FromRole="KHACHHANG" ToRole="DONHANG" />
+  </EntityType>
+  <EntityType Name="KHUYENMAI">
+    <Key>
+      <PropertyRef Name="KhuyenMai_ID" />
+    </Key>
+    <Property Name="KhuyenMai_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenKhuyenMai" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PhanTramKhuyenMai" Type="Double" />
+    <Property Name="NgayBatDau" Type="DateTime" Precision="0" />
+    <Property Name="NgayKetThuc" Type="DateTime" Precision="0" />
+    <Property Name="MoTa" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MONs" Relationship="Self.FK_KM_MON" FromRole="KHUYENMAI" ToRole="MON" />
+  </EntityType>
+  <EntityType Name="LOAI">
+    <Key>
+      <PropertyRef Name="Loai_ID" />
+    </Key>
+    <Property Name="Loai_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenLoai" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MONs" Relationship="Self.FK_LOAI_MON" FromRole="LOAI" ToRole="MON" />
+  </EntityType>
+  <EntityType Name="MON">
+    <Key>
+      <PropertyRef Name="Mon_ID" />
+    </Key>
+    <Property Name="Mon_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenMon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Loai_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Size_ID" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="DonVi_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="AnhMon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="KhuyenMai_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="MoTa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CONGTHUCs" Relationship="Self.FK_MON_CT" FromRole="MON" ToRole="CONGTHUC" />
+    <NavigationProperty Name="CTDONHANGs" Relationship="Self.FK_MON_CTDONHANGONL" FromRole="MON" ToRole="CTDONHANG" />
+    <NavigationProperty Name="DONVI" Relationship="Self.FK_DONVI_MON" FromRole="MON" ToRole="DONVI" />
+    <NavigationProperty Name="KHUYENMAI" Relationship="Self.FK_KM_MON" FromRole="MON" ToRole="KHUYENMAI" />
+    <NavigationProperty Name="LOAI" Relationship="Self.FK_LOAI_MON" FromRole="MON" ToRole="LOAI" />
+    <NavigationProperty Name="SIZE" Relationship="Self.FK_SIZE_MON" FromRole="MON" ToRole="SIZE" />
+  </EntityType>
+  <EntityType Name="NGUYENLIEU">
+    <Key>
+      <PropertyRef Name="NguyenLieu_ID" />
+    </Key>
+    <Property Name="NguyenLieu_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NCC_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenNguyenLieu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DonVi_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="SoLuongTon" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MoTa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CONGTHUCs" Relationship="Self.FK_NL_CT" FromRole="NGUYENLIEU" ToRole="CONGTHUC" />
+    <NavigationProperty Name="DONVI" Relationship="Self.FK_DONVI_NGUYENLIEU" FromRole="NGUYENLIEU" ToRole="DONVI" />
+    <NavigationProperty Name="NHACUNGCAP" Relationship="Self.FK_NCC_NGUYENLIEU" FromRole="NGUYENLIEU" ToRole="NHACUNGCAP" />
+  </EntityType>
+  <EntityType Name="NHACUNGCAP">
+    <Key>
+      <PropertyRef Name="NCC_ID" />
+    </Key>
+    <Property Name="NCC_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenNCC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NGUYENLIEUx" Relationship="Self.FK_NCC_NGUYENLIEU" FromRole="NHACUNGCAP" ToRole="NGUYENLIEU" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="NhanVien_ID" />
+    </Key>
+    <Property Name="NhanVien_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HoTenNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PassWord" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Quyen_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="DONHANGs" Relationship="Self.FK_NHANVIEN_DH" FromRole="NHANVIEN" ToRole="DONHANG" />
+    <NavigationProperty Name="QUYENTRUYCAP" Relationship="Self.FK_QUYEN_NV" FromRole="NHANVIEN" ToRole="QUYENTRUYCAP" />
+  </EntityType>
+  <EntityType Name="QUYENTRUYCAP">
+    <Key>
+      <PropertyRef Name="Quyen_ID" />
+    </Key>
+    <Property Name="Quyen_ID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenQuyen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NHANVIENs" Relationship="Self.FK_QUYEN_NV" FromRole="QUYENTRUYCAP" ToRole="NHANVIEN" />
+  </EntityType>
+  <EntityType Name="SIZE">
+    <Key>
+      <PropertyRef Name="Size_ID" />
+    </Key>
+    <Property Name="Size_ID" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenSize" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MONs" Relationship="Self.FK_SIZE_MON" FromRole="SIZE" ToRole="MON" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="VOUCHER">
+    <Key>
+      <PropertyRef Name="Voucher_ID" />
+    </Key>
+    <Property Name="Voucher_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenVoucher" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PhanTramKhuyenMai" Type="Double" />
+    <Property Name="GiamGiaToiDa" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NgayBatDau" Type="DateTime" Precision="0" />
+    <Property Name="NgayKetThuc" Type="DateTime" Precision="0" />
+    <Property Name="MoTa" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DONHANGs" Relationship="Self.FK_VOUCHER_DH" FromRole="VOUCHER" ToRole="DONHANG" />
+  </EntityType>
+  <Association Name="FK_MON_CT">
+    <End Role="MON" Type="Self.MON" Multiplicity="1" />
+    <End Role="CONGTHUC" Type="Self.CONGTHUC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MON">
+        <PropertyRef Name="Mon_ID" />
+      </Principal>
+      <Dependent Role="CONGTHUC">
+        <PropertyRef Name="Mon_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NL_CT">
+    <End Role="NGUYENLIEU" Type="Self.NGUYENLIEU" Multiplicity="1" />
+    <End Role="CONGTHUC" Type="Self.CONGTHUC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NGUYENLIEU">
+        <PropertyRef Name="NguyenLieu_ID" />
+      </Principal>
+      <Dependent Role="CONGTHUC">
+        <PropertyRef Name="NguyenLieu_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTDOANHTHUNGAY_DONHANG">
+    <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
+    <End Role="CTDOANHTHUNGAY" Type="Self.CTDOANHTHUNGAY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONHANG">
+        <PropertyRef Name="DonHang_ID" />
+      </Principal>
+      <Dependent Role="CTDOANHTHUNGAY">
+        <PropertyRef Name="DonHang_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONHANGONL_CTDONHANGONL">
+    <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
+    <End Role="CTDONHANG" Type="Self.CTDONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONHANG">
+        <PropertyRef Name="DonHang_ID" />
+      </Principal>
+      <Dependent Role="CTDONHANG">
+        <PropertyRef Name="DonHang_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MON_CTDONHANGONL">
+    <End Role="MON" Type="Self.MON" Multiplicity="1" />
+    <End Role="CTDONHANG" Type="Self.CTDONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MON">
+        <PropertyRef Name="Mon_ID" />
+      </Principal>
+      <Dependent Role="CTDONHANG">
+        <PropertyRef Name="Mon_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KHACHHANG_DH">
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+    <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="KhachHang_ID" />
+      </Principal>
+      <Dependent Role="DONHANG">
+        <PropertyRef Name="KhachHang_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NHANVIEN_DH">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+    <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NhanVien_ID" />
+      </Principal>
+      <Dependent Role="DONHANG">
+        <PropertyRef Name="NhanVien_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VOUCHER_DH">
+    <End Role="VOUCHER" Type="Self.VOUCHER" Multiplicity="0..1" />
+    <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VOUCHER">
+        <PropertyRef Name="Voucher_ID" />
+      </Principal>
+      <Dependent Role="DONHANG">
+        <PropertyRef Name="Voucher_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONVI_MON">
+    <End Role="DONVI" Type="Self.DONVI" Multiplicity="0..1" />
+    <End Role="MON" Type="Self.MON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONVI">
+        <PropertyRef Name="DonVi_ID" />
+      </Principal>
+      <Dependent Role="MON">
+        <PropertyRef Name="DonVi_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONVI_NGUYENLIEU">
+    <End Role="DONVI" Type="Self.DONVI" Multiplicity="0..1" />
+    <End Role="NGUYENLIEU" Type="Self.NGUYENLIEU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONVI">
+        <PropertyRef Name="DonVi_ID" />
+      </Principal>
+      <Dependent Role="NGUYENLIEU">
+        <PropertyRef Name="DonVi_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KM_MON">
+    <End Role="KHUYENMAI" Type="Self.KHUYENMAI" Multiplicity="0..1" />
+    <End Role="MON" Type="Self.MON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHUYENMAI">
+        <PropertyRef Name="KhuyenMai_ID" />
+      </Principal>
+      <Dependent Role="MON">
+        <PropertyRef Name="KhuyenMai_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LOAI_MON">
+    <End Role="LOAI" Type="Self.LOAI" Multiplicity="0..1" />
+    <End Role="MON" Type="Self.MON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAI">
+        <PropertyRef Name="Loai_ID" />
+      </Principal>
+      <Dependent Role="MON">
+        <PropertyRef Name="Loai_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIZE_MON">
+    <End Role="SIZE" Type="Self.SIZE" Multiplicity="0..1" />
+    <End Role="MON" Type="Self.MON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIZE">
+        <PropertyRef Name="Size_ID" />
+      </Principal>
+      <Dependent Role="MON">
+        <PropertyRef Name="Size_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NCC_NGUYENLIEU">
+    <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="1" />
+    <End Role="NGUYENLIEU" Type="Self.NGUYENLIEU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHACUNGCAP">
+        <PropertyRef Name="NCC_ID" />
+      </Principal>
+      <Dependent Role="NGUYENLIEU">
+        <PropertyRef Name="NCC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QUYEN_NV">
+    <End Role="QUYENTRUYCAP" Type="Self.QUYENTRUYCAP" Multiplicity="0..1" />
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QUYENTRUYCAP">
+        <PropertyRef Name="Quyen_ID" />
+      </Principal>
+      <Dependent Role="NHANVIEN">
+        <PropertyRef Name="Quyen_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLFastFoodEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CONGTHUCs" EntityType="Self.CONGTHUC" />
+    <EntitySet Name="CTDOANHTHUNGAYs" EntityType="Self.CTDOANHTHUNGAY" />
+    <EntitySet Name="CTDONHANGs" EntityType="Self.CTDONHANG" />
+    <EntitySet Name="DONHANGs" EntityType="Self.DONHANG" />
+    <EntitySet Name="DONVIs" EntityType="Self.DONVI" />
+    <EntitySet Name="FEEDBACKs" EntityType="Self.FEEDBACK" />
+    <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
+    <EntitySet Name="KHUYENMAIs" EntityType="Self.KHUYENMAI" />
+    <EntitySet Name="LOAIs" EntityType="Self.LOAI" />
+    <EntitySet Name="MONs" EntityType="Self.MON" />
+    <EntitySet Name="NGUYENLIEUx" EntityType="Self.NGUYENLIEU" />
+    <EntitySet Name="NHACUNGCAPs" EntityType="Self.NHACUNGCAP" />
+    <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+    <EntitySet Name="QUYENTRUYCAPs" EntityType="Self.QUYENTRUYCAP" />
+    <EntitySet Name="SIZEs" EntityType="Self.SIZE" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="VOUCHERs" EntityType="Self.VOUCHER" />
+    <AssociationSet Name="FK_MON_CT" Association="Self.FK_MON_CT">
+      <End Role="MON" EntitySet="MONs" />
+      <End Role="CONGTHUC" EntitySet="CONGTHUCs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NL_CT" Association="Self.FK_NL_CT">
+      <End Role="NGUYENLIEU" EntitySet="NGUYENLIEUx" />
+      <End Role="CONGTHUC" EntitySet="CONGTHUCs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTDOANHTHUNGAY_DONHANG" Association="Self.FK_CTDOANHTHUNGAY_DONHANG">
+      <End Role="DONHANG" EntitySet="DONHANGs" />
+      <End Role="CTDOANHTHUNGAY" EntitySet="CTDOANHTHUNGAYs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONHANGONL_CTDONHANGONL" Association="Self.FK_DONHANGONL_CTDONHANGONL">
+      <End Role="DONHANG" EntitySet="DONHANGs" />
+      <End Role="CTDONHANG" EntitySet="CTDONHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MON_CTDONHANGONL" Association="Self.FK_MON_CTDONHANGONL">
+      <End Role="MON" EntitySet="MONs" />
+      <End Role="CTDONHANG" EntitySet="CTDONHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KHACHHANG_DH" Association="Self.FK_KHACHHANG_DH">
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+      <End Role="DONHANG" EntitySet="DONHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NHANVIEN_DH" Association="Self.FK_NHANVIEN_DH">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="DONHANG" EntitySet="DONHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VOUCHER_DH" Association="Self.FK_VOUCHER_DH">
+      <End Role="VOUCHER" EntitySet="VOUCHERs" />
+      <End Role="DONHANG" EntitySet="DONHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONVI_MON" Association="Self.FK_DONVI_MON">
+      <End Role="DONVI" EntitySet="DONVIs" />
+      <End Role="MON" EntitySet="MONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONVI_NGUYENLIEU" Association="Self.FK_DONVI_NGUYENLIEU">
+      <End Role="DONVI" EntitySet="DONVIs" />
+      <End Role="NGUYENLIEU" EntitySet="NGUYENLIEUx" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KM_MON" Association="Self.FK_KM_MON">
+      <End Role="KHUYENMAI" EntitySet="KHUYENMAIs" />
+      <End Role="MON" EntitySet="MONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LOAI_MON" Association="Self.FK_LOAI_MON">
+      <End Role="LOAI" EntitySet="LOAIs" />
+      <End Role="MON" EntitySet="MONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIZE_MON" Association="Self.FK_SIZE_MON">
+      <End Role="SIZE" EntitySet="SIZEs" />
+      <End Role="MON" EntitySet="MONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NCC_NGUYENLIEU" Association="Self.FK_NCC_NGUYENLIEU">
+      <End Role="NHACUNGCAP" EntitySet="NHACUNGCAPs" />
+      <End Role="NGUYENLIEU" EntitySet="NGUYENLIEUx" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QUYEN_NV" Association="Self.FK_QUYEN_NV">
+      <End Role="QUYENTRUYCAP" EntitySet="QUYENTRUYCAPs" />
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

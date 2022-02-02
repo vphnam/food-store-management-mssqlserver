@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "NotFound";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+
+<div class="productszz" style="text-align:center;">
+    <br />
+    <br />
+    <p>HTTP @ViewBag.StatusCode - @ViewBag.Dis</p>
+    <br />
+    <h3>Trang mà bạn tìm kiếm không tồn tại. Vui lòng <p style="color:red;">@Html.ActionLink("Trở về trang chủ", "Index", "Home")</p></h3>
+    <br />
+    <br />
+    <br />
+    <br />
+</div>
+

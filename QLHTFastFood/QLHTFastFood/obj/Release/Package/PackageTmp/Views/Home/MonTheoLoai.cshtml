@@ -1,0 +1,41 @@
+﻿@model IEnumerable<QLHTFastFood.Models.DisplayMon>
+
+@{
+    ViewBag.Title = "MonTheoLoai";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+<div class="products">
+    <h2 class="textheader" style="text-align:center;">@ViewBag.TenLoai</h2>
+    @foreach (var item in Model)
+    {
+        <div class="products__item">
+            <a href="/Detail/@item.Mon_ID"><img style="height:200px;" src="@Url.Content(item.AnhMon)" alt="Product" /></a>
+            <h4 style="text-align:center;">@item.TenMon</h4>
+            @if (item.KhuyenMai_ID == null)
+            {
+                <br />
+                <h2 style="text-align:center;"><span>@item.DonGia VNĐ</span></h2>
+                <br />
+            }
+            @if (item.KhuyenMai_ID != null)
+            {
+                <h2 style="text-align:center;"><span><strike>@item.DonGia VNĐ</strike></span></h2>
+                <h2 style="text-align:center; color:red;"><span><strong>@item.GiaKM VNĐ</strong></span></h2>}
+
+            <ul>
+                <li>
+                    @item.MoTa
+                </li>
+            </ul>
+            <p>
+                <i class="fa fa-angle-down"></i>
+            </p>
+            <div class="products__button1">
+                <a href="/Home/Detail/@item.Mon_ID">Xem chi tiết</a>
+            </div>
+            <div class="products__button2">
+                <a href="@Url.Action("ThemGioHang","Giohang", new { @maMon = item.Mon_ID, @soLuong = 1, @strURL = Request.Url.ToString()})">Đặt hàng</a>
+            </div>
+        </div>
+    }
+</div>

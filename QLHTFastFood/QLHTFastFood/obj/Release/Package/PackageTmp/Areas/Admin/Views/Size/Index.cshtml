@@ -1,0 +1,73 @@
+﻿@model PagedList.IPagedList<QLHTFastFood.Models.SIZE>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    DANH SÁCH SIZE
+}
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1">Bảng size</i>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Mã size
+                                </th>
+                                <th>
+                                    Tên size
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="/Admin/Size/Edit/@item.Size_ID">Sửa thông tin</a>
+                                        <br />
+                                        <br />
+                                        <a href="/Admin/Size/Delete/@item.Size_ID">Xóa thông tin</a>
+                                    </td>
+                                    <td>@item.Size_ID</td>
+                                    <td>@item.TenSize</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Mã size
+                                </th>
+                                <th>
+                                    Tên size
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/PagedList.css" rel="stylesheet" />

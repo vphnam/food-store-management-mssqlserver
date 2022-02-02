@@ -1,0 +1,81 @@
+﻿@model PagedList.IPagedList<QLHTFastFood.Models.CONGTHUC>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "CongThuc";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    DANH SÁCH CÔNG THỨC CỦA MÓN @ViewBag.TenMon
+}
+
+
+@Html.ActionLink("Thêm mới", "CreateCT", "Mon", new { id = ViewBag.MaMon}, new { @class = "btn btn-primary" })
+<br />
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1">Bảng công thức</i>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Tên món
+                                </th>
+                                <th>
+                                    Tên nguyên liệu
+                                </th>
+                                <th>
+                                    Số lượng nguyên liệu cần
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="@Html.Raw(@Url.Action("EditCT", "Mon", new { monID = item.Mon_ID, nlID = item.NguyenLieu_ID }))">Sửa công thức</a>
+                                        <br />
+                                        <a href="@Html.Raw(@Url.Action("DeleteCT", "Mon", new { monID = item.Mon_ID, nlID = item.NguyenLieu_ID }))">Xóa công thức</a>
+                                        <br />
+                                    </td>
+                                    <td>@item.MON.TenMon</td>
+                                    <td>@item.NGUYENLIEU.TenNguyenLieu</td>
+                                    <td>@item.SoLuongNLCan</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Tên món
+                                </th>
+                                <th>
+                                    Tên nguyên liệu
+                                </th>
+                                <th>
+                                    Số lượng nguyên liệu cần
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/PagedList.css" rel="stylesheet" />

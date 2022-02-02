@@ -1,0 +1,4 @@
+﻿@model QLHTFastFood.Models.NHACUNGCAP
+
+@Html.DropDownListFor(model => model.NCC_ID,
+    new SelectList(Model.ListNCC.OrderBy(model => model.NCC_ID),"NCC_ID","TenNCC"),"-Chọn nhà cung cấp-", new { htmlAttributes = new { @class = "form-control py-4" } })

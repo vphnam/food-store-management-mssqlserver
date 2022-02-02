@@ -1,0 +1,56 @@
+﻿@model QLHTFastFood.Models.DisplayMon
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/_LayoutPage.cshtml";
+}
+@if (ViewBag.LoiHetHang != null)
+{
+    <script>
+        $(document).ready(function () {
+                alert('@ViewBag.LoiHetHang');
+        });
+    </script>
+}
+<div class="productszz">
+    <div class="card-header" style="color:black;background-color:white;"><h1 class="text-center font-weight-light my-4" style="text-align:center;">THÔNG TIN CHI TIẾT MÓN</h1></div>
+    <div class="card-body">
+
+        <table class="table-borderless" style="width:100%" align="center">
+            <tr>
+                <td><img style="height:300px;width:400px; margin-left:60px;margin-top:35px" src="@Url.Content(Model.AnhMon)" alt="Product" /></td>
+                <td>
+                    <h2 style="text-align:center;">
+                        @Model.TenMon</h2style="text-align:center;">
+                        <br />
+                        <br />
+                        <h3>Đơn giá:  @Model.DonGia</h3>
+                        @if (Model.GiaKM != null)
+                        {
+                            <h3>Giá khuyến mãi chỉ: <span style="color:red;"><b>@Model.GiaKM</b></span> </h3>
+                        }
+                        Số lượng đặt:
+                        @using (Html.BeginForm("ThemGioHang", "GioHang", new { @maMon = Model.Mon_ID, @strURL = Request.Url.ToString() }))
+                        {
+                            <input type="number" style="margin-top:15px;" name="soLuong" value="1" min="1" />
+                            <input type="submit" value="Đặt hàng" class="products__button2" />
+                        }
+                </td>
+
+
+            </tr>
+        </table>
+        <br />
+        <hr style="width:100%;" />
+        <br />
+        <div style="text-align:left; margin-left:60px;">
+            <small>@Model.MoTa  </small>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <hr style="width:100%;" />
+    </div>
+</div>
+

@@ -1,0 +1,115 @@
+﻿@model PagedList.IPagedList<QLHTFastFood.Models.KHUYENMAI>
+@using PagedList.Mvc
+@{
+                /**/
+
+                ViewBag.Title = "Index";
+                Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    DANH SÁCH KHUYẾN MÃI
+}
+@using (Html.BeginForm("Index", "KhuyenMai"))
+{
+    <div class="form-horizontal">
+        <div class="form-group" style="margin:15px;">
+            <p class="small mb-1">Nhập mã khuyến mãi cần tìm</p>
+            <input type="search" name="id" style="width:400px; height:40px;" />
+            <input type="submit" class="btn btn-primary" value="Tìm kiếm" style="width:100px;height:45px;" />
+        </div>
+    </div>
+}
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1">Bảng khuyến mãi</i>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Mã khuyến mãi
+                                </th>
+                                <th>
+                                    Tên khuyến mãi
+                                </th>
+                                <th>
+                                    Phần trăm khuyến mãi
+                                </th>
+                                <th>
+                                    Ngày bắt đầu
+                                </th>
+                                <th>
+                                    Ngày kết thúc
+                                </th>
+                                <th>
+                                    Mô tả
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="/Admin/KhuyenMai/Edit/@item.KhuyenMai_ID">Sửa thông tin</a>
+                                        <br />
+                                        <br />
+                                        <a href="/Admin/KhuyenMai/Delete/@item.KhuyenMai_ID">Xóa thông tin</a>
+                                    </td>
+                                    <td>@item.KhuyenMai_ID</td>
+                                    <td>@item.TenKhuyenMai</td>
+                                    @if (item.PhanTramKhuyenMai > 0)
+                                    {
+                                        var x = item.PhanTramKhuyenMai * 100;
+                                        <td>@x%</td>}
+                                    <td>@Convert.ToDateTime(item.NgayBatDau).ToString("dd/MM/yyyy")</td>
+                                    <td>@Convert.ToDateTime(item.NgayKetThuc).ToString("dd/MM/yyyy")</td>
+                                    <td>@item.MoTa</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Mã khuyến mãi
+                                </th>
+                                <th>
+                                    Tên khuyến mãi
+                                </th>
+                                <th>
+                                    Phần trăm khuyến mãi
+                                </th>
+                                <th>
+                                    Ngày bắt đầu
+                                </th>
+                                <th>
+                                    Ngày kết thúc
+                                </th>
+                                <th>
+                                    Mô tả
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/PagedList.css" rel="stylesheet" />

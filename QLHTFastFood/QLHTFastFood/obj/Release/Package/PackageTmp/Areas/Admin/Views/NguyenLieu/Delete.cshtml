@@ -1,0 +1,50 @@
+﻿@model QLHTFastFood.Models.NGUYENLIEU
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    XÓA NHÀ NGUYÊN LIỆU
+}
+<div>
+    <hr />
+    <table border="1" style="width:80%;">
+        <tr>
+            <td>Mã nguyên liệu</td>
+            <td>@Html.DisplayFor(model => model.NguyenLieu_ID)</td>
+        </tr>
+        <tr>
+            <td>Tên nhà cung cấp</td>
+            <td>@Html.DisplayFor(model => model.NHACUNGCAP.TenNCC)</td>
+        </tr>
+        <tr>
+            <td>Tên nguyên liệu</td>
+            <td>@Html.DisplayFor(model => model.TenNguyenLieu)</td>
+        </tr>
+        <tr>
+            <td>Đơn vị</td>
+            <td>@Html.DisplayFor(model => model.DONVI.TenDonVi)</td>
+        </tr>
+        <tr>
+            <td>Số lượng tồn</td>
+            <td>@Html.DisplayFor(model => model.SoLuongTon)</td>
+        </tr>
+        <tr>
+            <td>Mô tả</td>
+            <td>@Html.DisplayFor(model => model.MoTa)</td>
+        </tr>
+
+    </table>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Chấp nhận xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

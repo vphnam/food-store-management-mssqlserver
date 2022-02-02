@@ -1,0 +1,79 @@
+﻿@model QLHTFastFood.Models.KHUYENMAI
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section header{
+    CẬP NHẬT THÔNG TIN LOẠI MÓN
+}
+@using (Html.BeginForm("Edit", "KhuyenMai", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="card-body">
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="small mb-1">Tên khuyến mãi</label>
+                    @Html.EditorFor(model => model.TenKhuyenMai, new { htmlAttributes = new { @class = "form-control py-4", @placeholder = "Nhập tên khuyến mãi" } })
+                    @Html.ValidationMessageFor(model => model.TenKhuyenMai, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="small mb-1">Phần trăm khuyến mãi</label>
+                    @Html.EditorFor(model => model.PhanTramKhuyenMai, new { htmlAttributes = new { @class = "form-control py-4", @placeholder = "Nhập phần trăm khuyến mãi" } })
+                    @Html.ValidationMessageFor(model => model.PhanTramKhuyenMai, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="small mb-1">Ngày bắt đầu</label>
+                    <input type="date" name="NgayBatDau" class="form-control py-4" />
+                    @Html.ValidationMessageFor(model => model.NgayBatDau, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="small mb-1">Ngày kết thúc</label>
+                    <input type="date" name="NgayKetThuc" class="form-control py-4" />
+                    @Html.ValidationMessageFor(model => model.NgayKetThuc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="small mb-1">Mô tả</label>
+                    @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control py-4", @placeholder = "Nhập mô tả" } })
+                    @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="form-group mt-4 mb-0">
+                        <input type="submit" class="btn btn-primary btn-block" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+}
+
